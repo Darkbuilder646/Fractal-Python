@@ -1,21 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
-"""
-Mandelbrot formula :
-Z0 = 0
-Zn+1 = (Zn)**2 + C
-
-C = x + yi
-
-3 values of C :
-C = -1 | C = 0 | C = +1
-
-Define a set :
-Value de base = 2
-Si |Zn| < {value} => belongs to the set
-Si |Zn| > {value} => does not belong to the set
-"""
 """
 #//? Recursive function are limited for +1000 itteration
 def CalculZ(itteration, complex):
@@ -37,5 +21,4 @@ for n, z_nbr in enumerate(Calcul_Z(complex=1)):
     print(f"Z({n}) = {z_nbr}")
     if n >= max:
         break
- 
 

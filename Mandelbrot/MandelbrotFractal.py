@@ -16,15 +16,26 @@ Value de base = 2
 Si |Zn| < {value} => belongs to the set
 Si |Zn| > {value} => does not belong to the set
 """
-
+"""
+#//? Recursive function are limited for +1000 itteration
 def CalculZ(itteration, complex):
     if(itteration == 0):
         return 0
     else:
-        return CalculZ(itteration - 1, complex) ** 2 + complex
- 
+        return pow(CalculZ(itteration - 1, complex), 2) + complex
+""" 
 
-for n in range(10):
-    print(f"Z({n}) = {CalculZ(n, complex = 1)}")
+def Calcul_Z(complex):
+    z = 0
+    while True:
+        yield z
+        z = pow(z, 2) + complex
+
+max = int(input("Max itération : "))
+
+for n, z_nbr in enumerate(Calcul_Z(complex=1)):
+    print(f"Z({n}) = {z_nbr}")
+    if n >= max:
+        break
  
 

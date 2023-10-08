@@ -38,8 +38,14 @@ def DrawMandelbrot(startX: float, endX: float, startY: float, endY: float, width
 
     plt.figure(figsize=(16,9))
     #cmap = CustomCmap()
-    #default cmap = 'PuBu_r'
-    plt.imshow(img, extent=(startX, endX, startY, endY), cmap='PuBu_r', origin='lower', vmax=max_iterations, vmin=0)
+    """ good cmap
+    PuBu_r
+    nipy_spectral_r
+    twilight_shifted
+    turbo_r
+    magma_r
+    """
+    plt.imshow(img, extent=(startX, endX, startY, endY),interpolation='bilinear', cmap='nipy_spectral_r', origin='lower')
     
     plt.axis('off')
     plt.tight_layout()
@@ -50,4 +56,4 @@ def DrawMandelbrot(startX: float, endX: float, startY: float, endY: float, width
     plt.show()
 
 sartingTime = time.time()
-DrawMandelbrot(-2.0, 1.0, -1.5, 1.5, 1000, 1000, 500)
+DrawMandelbrot(-2.0, 1.0, -1.5, 1.5, 1000, 1000, 1000)

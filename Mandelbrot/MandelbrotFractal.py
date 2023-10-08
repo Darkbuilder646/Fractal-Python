@@ -1,47 +1,26 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-""" Recursive function
-#//? Recursive function are limited for +1000 itteration
-def CalculZ(itteration, complex):
-    if(itteration == 0):
-        return 0
-    else:
-        return pow(CalculZ(itteration - 1, complex), 2) + complex
-""" 
-""" Test Function
-def Calcul_Z(complex, stop = 0):
-    z = 0
-    while stop == 0:
-        yield z
-        z = pow(z, 2) + complex
 
-max = 5
-for n, z_nbr in enumerate(Calcul_Z(complex=1)):
-    print(f"Z({n}) = {z_nbr}")
-    if n >= max:
-        break
-"""
-
-def Calcule_Z(complex, max_itteration = 100):
+def Computes_Z(complex, max_itteration = 100):
     z = 0
     for i in range(max_itteration):
         z = z * z + complex
         yield z
 
-def CalculeMandelbrot(complex, max_itteration = 100):
-    for n, z_nbr in enumerate(Calcule_Z(complex, max_itteration)):
+def ComputesMandelbrot(complex, max_itteration = 100):
+    for n, z_nbr in enumerate(Computes_Z(complex, max_itteration)):
         if(abs(z_nbr) > 2.0):
-            return n # => la suite diverge
+            return n # => the sequence diverges
         
-    return max_itteration # => la suite diverge pas
+    return max_itteration # => the sequence does not diverge
     
 fig, ax = plt.subplots()
 
 def DrawMandelbrot(start: float, end: float, step: float, max_itteration = 100):
     for x in np.arange(start, end+step, step):
         for y in np.arange(start, end+step, step):
-            result = CalculeMandelbrot(x + y * 1j, max_itteration)
+            result = ComputesMandelbrot(x + y * 1j, max_itteration)
             if(result != max_itteration):
                 point = plt.Circle((x, y), 0.015, color="white")
                 ax.add_artist(point)
@@ -61,9 +40,8 @@ ax.set_ylim(-1.5,1.5)
 ax.axhline(0, color="black", linewidth=0.5)
 ax.axvline(0, color="black", linewidth=0.5)
 
-plt.xlabel("Réel")
-plt.ylabel("Imaginair (i)")
+plt.xlabel("Real")
+plt.ylabel("imaginary")
 
 plt.imshow(image_array)
 plt.show()
-

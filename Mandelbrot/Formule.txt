@@ -11,3 +11,25 @@ Define a set :
 Value de base = 2
 Si |Zn| < {value} => belongs to the set
 Si |Zn| > {value} => does not belong to the set
+
+""" Recursive function
+#//? Recursive function are limited for +1000 itteration
+def ComputeZ(itteration, complex):
+    if(itteration == 0):
+        return 0
+    else:
+        return pow(ComputeZ(itteration - 1, complex), 2) + complex
+""" 
+""" Test Function
+def Compute_Z(complex, stop = 0):
+    z = 0
+    while stop == 0:
+        yield z
+        z = pow(z, 2) + complex
+
+max = 5
+for n, z_nbr in enumerate(Compute_Z(complex=1)):
+    print(f"Z({n}) = {z_nbr}")
+    if n >= max:
+        break
+"""

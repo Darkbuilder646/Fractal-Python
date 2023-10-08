@@ -1,3 +1,4 @@
+import time as time
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
@@ -17,8 +18,9 @@ def ComputesZ(complex, max_iterations = 100):
 def ComputesMandelbrot(complex, max_iterations = 100):
     for n, z_nbr in enumerate(ComputesZ(complex, max_iterations)):
         if(abs(z_nbr) > 2.0):
-            return n # => the sequence diverges
-        
+            #normalisation formula from internet
+            mu = n + 1 - np.log(np.log(abs(z_nbr))) / np.log(2)
+            return mu # => the sequence diverges
     return max_iterations # => the sequence does not diverge
   
 
@@ -33,11 +35,19 @@ def DrawMandelbrot(startX: float, endX: float, startY: float, endY: float, width
             color = ComputesMandelbrot(c, max_iterations)
             img[y, x] = color
 
+
+    plt.figure(figsize=(16,9))
     #cmap = CustomCmap()
     #default cmap = 'PuBu_r'
-    plt.imshow(img, extent=(startX, endX, startY, endY), cmap='PuBu_r', origin='lower', vmax=max_iterations, vmin=0, interpolation='bilinear')
-    plt.colorbar()
+    plt.imshow(img, extent=(startX, endX, startY, endY), cmap='PuBu_r', origin='lower', vmax=max_iterations, vmin=0)
+    
+    plt.axis('off')
+    plt.tight_layout()
+    #Time to compute
+    duration = time.time() - sartingTime
+    print(duration)
+
     plt.show()
 
-
-DrawMandelbrot(-2.0, 1.0, -1.5, 1.5, 1000, 1000, 100)
+sartingTime = time.time()
+DrawMandelbrot(-2.0, 1.0, -1.5, 1.5, 1000, 1000, 500)

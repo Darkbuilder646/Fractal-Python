@@ -20,6 +20,7 @@ def ComputeZ(itteration, complex):
     else:
         return pow(ComputeZ(itteration - 1, complex), 2) + complex
 """ 
+
 """ Test Function
 def Compute_Z(complex, stop = 0):
     z = 0
@@ -32,4 +33,19 @@ for n, z_nbr in enumerate(Compute_Z(complex=1)):
     print(f"Z({n}) = {z_nbr}")
     if n >= max:
         break
+"""
+
+""" Mandelbrot Set with graphique
+def DrawMandelbrot(startX: float, endX: float, startY: float, endY: float, step: float, max_iterations = 100):
+    for x in np.arange(startX, endX+step, step):
+        for y in np.arange(startY, endY+step, step):
+            result = ComputesMandelbrot(x + y * 1j, max_iterations)
+            if(result != max_iterations):
+                point = plt.Circle((x, y), 0.015, color="white")
+                ax.add_artist(point)
+            else:
+                point = plt.Circle((x, y), 0.015, color="black")
+                ax.add_artist(point)
+
+DrawMandelbrot(-2.0, 1.0, -1.0, 1.0, 0.01, 100)
 """

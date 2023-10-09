@@ -37,6 +37,11 @@ As the project progresses, if I encounter certain limitations or if I aim to enh
 
 Project Devlog : 
 
+- Add some color and optimisation
+<p align="left">
+  <img src="./Images/Fractal_color.png" alt="Color Mandelbrot" width="700">
+</p>
+
 - Drawing the Mandelbrot set with Matplotlib.pyplot
 <p align="left">
   <img src="./Images/Mandelbrot_Python.png" alt="Result Mandelbrot">
